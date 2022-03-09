@@ -1,3 +1,5 @@
+const fs = require("fs");
+const { Parser } = require("json2csv");
 const DistanceParser = require("./distance_parser");
 
 (async () => {
@@ -5,6 +7,6 @@ const DistanceParser = require("./distance_parser");
     await distanceParser.loadFile();
     const dataWithDistance = distanceParser.processAndAddDistance()
 
-    console.log(dataWithDistance);
-
+    const carsInCsv = new Parser({ fields: ["vehicle_id", "row_id", "latitude", "longitude", "distance"] }).parse(dataWithDistance);
+    fs.writeFileSync("./output/with_distance.csv", carsInCsv);
 })();
