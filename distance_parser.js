@@ -59,7 +59,6 @@ class DistanceParser {
             longitude: vehicleData[0].longitude,
             distance: 0
         }];
-        output[0].distance = 0;
 
         for (let i = 0; i < vehicleData.length - 1; i++) {
             output.push({
